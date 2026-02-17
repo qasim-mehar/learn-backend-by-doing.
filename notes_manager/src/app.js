@@ -16,5 +16,13 @@ app.get("/notes", (req, res) => {
     notes,
   });
 });
+//Any param after : is dynamic value
+app.delete("/notes/:index", (req, res) => {
+  const index = req.params.index;
+  delete notes[index];
+  res.status(200).json({
+    message: "Note deleted succussfully",
+  });
+});
 
 module.exports = app;
