@@ -39,4 +39,5 @@ app.patch("/notes/:index", (req, res) => {
     message: "Notes updated successfully.",
   });
 });
+
 module.exports = app;
