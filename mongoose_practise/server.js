@@ -1,7 +1,9 @@
-const app = require("./src/app");
-const connectDB = require("./src/db/db");
+import express from "express";
+import connectDB from "./src/db/db.js"; // Note the .js extension!
+
+const app = express();
+
 connectDB();
 //start the server
-app.listen(3000, () => {
-  console.log("Server is running at port 3000");
-});
+const PORT = 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
