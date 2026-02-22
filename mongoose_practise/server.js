@@ -1,7 +1,5 @@
-const express = require("express");
 const connectDB = require("./src/db/db.js"); // Note the .js extension!
-
-const app = express();
+const app = require("./src/app.js");
 
 connectDB();
 //start the server
