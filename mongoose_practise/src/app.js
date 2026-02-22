@@ -36,4 +36,13 @@ app.delete("/notes/:id", async (req, res) => {
   });
 });
 
+app.patch("/notes/:id", async (req, res) => {
+  const id = req.params.id;
+  await noteModel.findByIdAndUpdate(id, {
+    ...req.body,
+  });
+  res.status(200).json({
+    message: "Note updated successfully",
+  });
+});
 module.exports = app;
