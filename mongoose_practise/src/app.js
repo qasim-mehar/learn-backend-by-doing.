@@ -25,4 +25,15 @@ app.get("/notes", async (req, res) => {
   });
 });
 
+app.delete("/notes/:id", async (req, res) => {
+  const id = req.params.id;
+  //FindOneAndDelete() method delete data and return that data as well where as deleteOne() method only delete that data.
+  await noteModel.findOneAndDelete({
+    _id: id,
+  });
+  res.status(200).json({
+    message: "Note remove successfullt",
+  });
+});
+
 module.exports = app;
