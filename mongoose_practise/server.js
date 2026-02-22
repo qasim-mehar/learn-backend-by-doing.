@@ -1,5 +1,5 @@
-import express from "express";
-import connectDB from "./src/db/db.js"; // Note the .js extension!
+const express = require("express");
+const connectDB = require("./src/db/db.js"); // Note the .js extension!
 
 const app = express();
 
