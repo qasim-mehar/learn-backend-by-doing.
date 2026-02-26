@@ -1,6 +1,5 @@
 import "./Feed.css";
 
-// Dummy data to simulate your posts
 const DUMMY_POSTS = [
   {
     id: 1,
