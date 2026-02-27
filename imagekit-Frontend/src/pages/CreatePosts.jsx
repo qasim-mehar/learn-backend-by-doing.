@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./CreatePost.css";
+import axios from "axios";
 
 export default function CreatePosts() {
   const [image, setImage] = useState(null);
@@ -15,7 +16,6 @@ export default function CreatePosts() {
       setPreview(URL.createObjectURL(file));
     }
   };
-
   // Simulate an API upload request
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -23,17 +23,35 @@ export default function CreatePosts() {
 
     setIsUploading(true);
 
-    // Simulate network delay
-    setTimeout(() => {
-      console.log("Uploaded successfully!", { image, caption });
+    // 1. Manually build the FormData using your React state
+    const formData = new FormData();
+    formData.append("image", image); // "image" must match your backend expectation
+    formData.append("caption", caption); // "caption" must match your backend expectation
+
+    try {
+      // 2. Send the request
+      const res = await axios.post(
+        "http://localhost:3000/create-post",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Important for file uploads
+          },
+        },
+      );
+
+      console.log("Uploaded successfully!", res.data);
       alert("Post uploaded successfully!");
 
-      // Reset form
       setImage(null);
       setPreview(null);
       setCaption("");
-      setIsUploading(false);
-    }, 1500);
+    } catch (error) {
+      console.error("Upload error:", error);
+      alert("Something went wrong while uploading.");
+    } finally {
+      setIsUploading(false); // Always turn off the loading state
+    }
   };
 
   return (
