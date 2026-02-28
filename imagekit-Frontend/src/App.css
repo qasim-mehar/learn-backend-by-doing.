@@ -1,14 +1,11 @@
-/* App.css */
+/* Make sure there is NO overflow: hidden here */
 html,
 body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
-  background-color: #fafafa; /* Minimalistic off-white background */
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif;
+  min-height: 100vh; /* Use min-height, not height */
+  background-color: #fafafa;
 }
 
 #root {

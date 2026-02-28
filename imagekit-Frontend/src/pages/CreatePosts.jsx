@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./CreatePost.css";
 import axios from "axios";
 
@@ -7,6 +8,7 @@ export default function CreatePosts() {
   const [preview, setPreview] = useState(null);
   const [caption, setCaption] = useState("");
   const [isUploading, setIsUploading] = useState(false);
+  const navigate = useNavigate();
 
   // Handle image selection and create a preview URL
   const handleImageChange = (e) => {
@@ -34,9 +36,8 @@ export default function CreatePosts() {
         "http://localhost:3000/create-post",
         formData,
       );
-
+      navigate("/");
       console.log("Uploaded successfully!", res.data);
-      alert("Post uploaded successfully!");
 
       setImage(null);
       setPreview(null);
