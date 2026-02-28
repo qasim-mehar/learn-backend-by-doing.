@@ -33,11 +33,6 @@ export default function CreatePosts() {
       const res = await axios.post(
         "http://localhost:3000/create-post",
         formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", // Important for file uploads
-          },
-        },
       );
 
       console.log("Uploaded successfully!", res.data);
