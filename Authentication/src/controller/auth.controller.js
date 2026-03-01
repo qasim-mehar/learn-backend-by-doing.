@@ -13,11 +13,10 @@ async function userRegister(req, res) {
     },
     process.env.JWT_SECRET,
   );
-
+  res.cookie("toker", token);
   res.status(201).json({
     message: "User register successfully",
     user,
-    token,
   });
 }
 module.exports = { userRegister };
